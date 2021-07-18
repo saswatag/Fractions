@@ -11,13 +11,13 @@ namespace FractionTests
         [Theory]
         [MemberData(nameof(FractionsWithDenominator_1))]
         [MemberData(nameof(FractionsInLowestFromWithSameDenominator))]
-        public void Fractions_With_Same_Denomitor_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator, 
+        public void Fractions_With_Same_Denominator_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator, 
             int expectedDenominator)
         {
-            var operand1 = new Fraction(numerator1, denominator1);
-            var operand2 = new Fraction(numerator2, denominator2);
+            var fraction1 = new Fraction(numerator1, denominator1);
+            var fraction2 = new Fraction(numerator2, denominator2);
 
-            Fraction sumResult = operand1.Add(operand2);
+            Fraction sumResult = fraction1.Add(fraction2);
 
             Assert.True(sumResult.Numerator.Equals(expectedNumerator) && sumResult.Denominator.Equals(expectedDenominator), 
                 $"Expected numerator: {expectedNumerator} and denominator: {expectedDenominator}, but got numerator: {sumResult.Numerator} and denominator: {sumResult.Denominator}");
@@ -27,11 +27,27 @@ namespace FractionTests
         [InlineData(1, 0)]
         [InlineData(0, 0)]
         [InlineData(-1, 0)]
-        public void Fractions_With_Denomitor_Zero_Are_Not_Allowed(int numerator, int deominator)
+        public void Fractions_With_Denominator_Zero_Are_Not_Allowed(int numerator, int deominator)
         {
             Action createFractionAction = () => new Fraction(numerator, deominator);
 
             createFractionAction.Should().Throw<ArgumentException>().WithMessage("Fraction with denominator zero is invalid.");
+        }
+
+        [Theory]
+        [InlineData(0, 2, 2, 3, 2, 3)]
+        [InlineData(1, 2, 2, 3, 7, 6)]
+        [InlineData(3, 4, 2, 9, 35, 36)]
+        public void Fractions_In_Lowest_Form_With_Different_Denominator_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator,
+            int expectedDenominator)
+        {
+            var operand1 = new Fraction(numerator1, denominator1);
+            var operand2 = new Fraction(numerator2, denominator2);
+
+            Fraction sumResult = operand1.Add(operand2);
+
+            Assert.True(sumResult.Numerator.Equals(expectedNumerator) && sumResult.Denominator.Equals(expectedDenominator),
+                $"Expected numerator: {expectedNumerator} and denominator: {expectedDenominator}, but got numerator: {sumResult.Numerator} and denominator: {sumResult.Denominator}");
         }
 
         #region Heplers
