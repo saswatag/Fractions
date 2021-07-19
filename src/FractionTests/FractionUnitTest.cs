@@ -11,6 +11,7 @@ namespace FractionTests
         [Theory]
         [MemberData(nameof(FractionsWithDenominator_1))]
         [MemberData(nameof(FractionsInLowestFromWithSameDenominator))]
+        [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors))]
         public void Fractions_With_Same_Denominator_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator, 
             int expectedDenominator)
         {
@@ -32,20 +33,6 @@ namespace FractionTests
             Action createFractionAction = () => new Fraction(numerator, deominator);
 
             createFractionAction.Should().Throw<ArgumentException>().WithMessage("Fraction with denominator zero is invalid.");
-        }
-
-        [Theory]
-        [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors))]
-        public void Fractions_In_Lowest_Form_With_Different_Denominator_Without_Common_Factors_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator,
-            int expectedDenominator)
-        {
-            var operand1 = new Fraction(numerator1, denominator1);
-            var operand2 = new Fraction(numerator2, denominator2);
-
-            Fraction sumResult = operand1.Add(operand2);
-
-            Assert.True(sumResult.Numerator.Equals(expectedNumerator) && sumResult.Denominator.Equals(expectedDenominator),
-                $"Expected numerator: {expectedNumerator} and denominator: {expectedDenominator}, but got numerator: {sumResult.Numerator} and denominator: {sumResult.Denominator}");
         }
 
         #region Heplers
