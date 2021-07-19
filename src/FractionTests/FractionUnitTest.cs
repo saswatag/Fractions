@@ -1,4 +1,5 @@
 using FluentAssertions;
+using FluentAssertions.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,8 +21,7 @@ namespace FractionTests
 
             Fraction sumResult = fraction1.Add(fraction2);
 
-            Assert.True(sumResult.Numerator.Equals(expectedNumerator) && sumResult.Denominator.Equals(expectedDenominator), 
-                $"Expected numerator: {expectedNumerator} and denominator: {expectedDenominator}, but got numerator: {sumResult.Numerator} and denominator: {sumResult.Denominator}");
+            Assert.Equal(sumResult, new Fraction(expectedNumerator, expectedDenominator));
         }
 
         [Theory]
@@ -33,6 +33,24 @@ namespace FractionTests
             Action createFractionAction = () => new Fraction(numerator, deominator);
 
             createFractionAction.Should().Throw<ArgumentException>().WithMessage("Fraction with denominator zero is invalid.");
+        }
+
+        [Theory]
+        [MemberData(nameof(FractionsInLowestTermsWithSameNumeratorsAndDenominators))]
+        public void Fractions_With_Same_Numerators_And_Denominators_Are_Equal(int numerator1, int denominator1, int numerator2, int denominator2)
+        {
+            var fraction1 = new Fraction(numerator1, denominator1);
+            var fraction2 = new Fraction(numerator2, denominator2);
+
+            Assert.Equal(fraction1, fraction2);
+        }
+
+        [Fact]
+        public void No_Fraction_IsEqualTo_Null()
+        {
+            var fraction = new Fraction(1, 2);            
+
+            Assert.NotEqual(null, fraction);
         }
 
         #region Heplers
@@ -70,6 +88,18 @@ namespace FractionTests
                 new object[] { 0, 2, 2, 3, 2, 3 },
                 new object[] { 1, 2, 2, 3, 7, 6 },
                 new object[] { 3, 4, 2, 9, 35, 36 }
+            };
+        }
+
+        public static IEnumerable<object[]> FractionsInLowestTermsWithSameNumeratorsAndDenominators()
+        {
+            return new List<object[]>
+            {
+                // numerator1, denominator1, numerator2, denominator2
+                new object[] { 0, 1, 0, 1 },
+                new object[] { 1, 1, 1, 1 },
+                new object[] { 1, 2, 1, 2 },
+                new object[] { 2, 3, 2, 3 }
             };
         }
 

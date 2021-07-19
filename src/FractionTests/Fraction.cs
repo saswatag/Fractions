@@ -27,5 +27,15 @@ namespace FractionTests
 
             return new Fraction((this.Numerator * fraction.Denominator) + (this.Denominator * fraction.Numerator), this.Denominator * fraction.Denominator);
         }
+
+        public override bool Equals(object obj)
+        {
+            Fraction otherFraction = obj as Fraction;
+
+            if (obj == null)
+                return false;
+
+            return this.Numerator == otherFraction.Numerator && this.Denominator == otherFraction.Denominator;
+        }
     }
 }
