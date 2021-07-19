@@ -35,10 +35,8 @@ namespace FractionTests
         }
 
         [Theory]
-        [InlineData(0, 2, 2, 3, 2, 3)]
-        [InlineData(1, 2, 2, 3, 7, 6)]
-        [InlineData(3, 4, 2, 9, 35, 36)]
-        public void Fractions_In_Lowest_Form_With_Different_Denominator_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator,
+        [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors))]
+        public void Fractions_In_Lowest_Form_With_Different_Denominator_Without_Common_Factors_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator,
             int expectedDenominator)
         {
             var operand1 = new Fraction(numerator1, denominator1);
@@ -74,6 +72,17 @@ namespace FractionTests
                 new object[] { 0, 1, 1, 1, 1, 1 },
                 new object[] { 5, 1, 5, 1, 10, 1 },
                 new object[] { 2, 3, 1, 3, 3, 3 }
+            };
+        }
+
+        public static IEnumerable<object[]> FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors()
+        {
+            return new List<object[]>
+            {
+                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
+                new object[] { 0, 2, 2, 3, 2, 3 },
+                new object[] { 1, 2, 2, 3, 7, 6 },
+                new object[] { 3, 4, 2, 9, 35, 36 }
             };
         }
 
