@@ -11,9 +11,9 @@ namespace FractionTests
     {
         [Theory]
         [MemberData(nameof(FractionsWithDenominator_1))]
-        [MemberData(nameof(FractionsInLowestFromWithSameDenominator))]
+        [MemberData(nameof(FractionsInLowestTermsWithSameDenominator))]
         [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors))]
-        public void Fractions_With_Same_Denominator_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator, 
+        public void Fractions_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator, 
             int expectedDenominator)
         {
             var fraction1 = new Fraction(numerator1, denominator1);
@@ -70,7 +70,7 @@ namespace FractionTests
             };
         }
 
-        public static IEnumerable<object[]> FractionsInLowestFromWithSameDenominator()
+        public static IEnumerable<object[]> FractionsInLowestTermsWithSameDenominator()
         {
             return new List<object[]>
             {
