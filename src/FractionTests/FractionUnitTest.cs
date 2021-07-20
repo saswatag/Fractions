@@ -48,7 +48,10 @@ namespace FractionTests
         [Fact]
         public void No_Fraction_IsEqualTo_Null()
         {
-            var fraction = new Fraction(1, 2);            
+            int anyIntegerValueForNumerator = 1;
+            int anyNonZeroIntegerValueForDenominator = 2;
+
+            var fraction = new Fraction(anyIntegerValueForNumerator, anyNonZeroIntegerValueForDenominator);            
 
             Assert.NotEqual(null, fraction);
         }
