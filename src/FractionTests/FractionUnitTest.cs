@@ -12,9 +12,10 @@ namespace FractionTests
         [Theory]
         [MemberData(nameof(FractionsWithDenominator_1))]
         [MemberData(nameof(FractionsInLowestTermsWithSameDenominator))]
-        [MemberData(nameof(FractionsNotInLowestTermsWithSameDenominator))]
-        [MemberData(nameof(FractionsNotInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors))]
         [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors))]
+        [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors))]
+        [MemberData(nameof(FractionsNotInLowestTermsWithSameDenominator))]
+        [MemberData(nameof(FractionsNotInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors))]        
         public void Fractions_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator, 
             int expectedDenominator)
         {
@@ -105,6 +106,17 @@ namespace FractionTests
                 new object[] { 1, 1, 1, 1 },
                 new object[] { 1, 2, 1, 2 },
                 new object[] { 2, 3, 2, 3 }
+            };
+        }
+
+        public static IEnumerable<object[]> FractionsInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors()
+        {
+            return new List<object[]>
+            {
+                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
+                new object[] { 3, 14, 8, 21, 175, 294 },
+                new object[] { 4, 9, 2, 63, 270, 567 },
+                new object[] { 15, 22, 7, 36, 694, 792 }
             };
         }
 
