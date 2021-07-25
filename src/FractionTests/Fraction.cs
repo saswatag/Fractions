@@ -7,6 +7,13 @@ namespace FractionTests
     {
         public int Numerator { get; private set; }
         public int Denominator { get; private set; }
+
+        public Fraction(int numerator)
+        {
+            Numerator = numerator;
+            Denominator = 1;
+        }
+
         public Fraction(int numerator, int denominator)
         {
             if (denominator.Equals(0))

@@ -59,6 +59,13 @@ namespace FractionTests
             Assert.NotEqual(null, fraction);
         }
 
+        [Fact]
+        public void FractionsWithDenominatorOneAreInitializedOnlyWithNumerator()
+        {
+            var fraction = new Fraction(3);
+            fraction.Denominator.Should().Be(1);
+        }
+
         #region Heplers
 
         public static IEnumerable<object[]> FractionsWithDenominator_1()
