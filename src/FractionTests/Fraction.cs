@@ -37,5 +37,10 @@ namespace FractionTests
 
             return this.Numerator == otherFraction.Numerator && this.Denominator == otherFraction.Denominator;
         }
+
+        public override int GetHashCode()
+        {
+            return Numerator * 19 + Denominator;
+        }
     }
 }
