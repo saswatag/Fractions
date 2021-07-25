@@ -7,7 +7,7 @@ using Xunit;
 
 namespace FractionTests
 {
-    public class FractionUnitTest
+    public class AddFractionTests
     {
         [Theory]
         [MemberData(nameof(FractionsWithDenominator_1))]
