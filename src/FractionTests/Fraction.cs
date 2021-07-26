@@ -47,5 +47,10 @@ namespace FractionTests
         {
             return Numerator * 19 + Denominator;
         }
+
+        public override string ToString()
+        {
+            return $"Fraction with numerator '{Numerator}' and denominator '{Denominator}'";
+        }
     }
 }
