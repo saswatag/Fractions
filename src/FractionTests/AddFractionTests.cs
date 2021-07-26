@@ -66,6 +66,12 @@ namespace FractionTests
             fraction.Denominator.Should().Be(1);
         }
 
+        [Fact]
+        public void SumFractionsInitializedOnlyWithNumerator()
+        {
+            new Fraction(3).Add(new Fraction(4)).Should().Be(new Fraction(7));
+        }
+
         #region Heplers
 
         public static IEnumerable<object[]> FractionsWithDenominator_1()
