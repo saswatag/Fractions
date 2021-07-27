@@ -17,8 +17,9 @@ namespace FractionTests
             if (denominator.Equals(0))
                 throw new ArgumentException("Fraction with denominator zero is invalid.");
 
-            Numerator = numerator;
-            Denominator = denominator;
+            int gcdOfNumeratorDenominator = NumberTheory.Gcd(numerator, denominator);
+            Numerator = numerator / gcdOfNumeratorDenominator;
+            Denominator = denominator / gcdOfNumeratorDenominator;
         }
 
         public Fraction Add(Fraction fraction)

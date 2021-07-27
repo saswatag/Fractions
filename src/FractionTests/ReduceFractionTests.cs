@@ -11,7 +11,7 @@ namespace FractionTests
 {
     public class ReduceFractionTests
     {
-        [Fact (Skip = "Waiting for reduce to work")]
+        [Fact]
         public void FractionsWithDenominatorOneAreInitializedOnlyWithNumerator()
         {
             var fraction = new Fraction(4, 8);
