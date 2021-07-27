@@ -9,7 +9,7 @@ namespace FractionTests
             if (secondNumber == 0)
                 return firstNumber;
             else
-                return Gcd(firstNumber, firstNumber % secondNumber);
+                return Gcd(secondNumber, firstNumber % secondNumber);
         }
     }
 }

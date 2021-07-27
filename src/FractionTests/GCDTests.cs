@@ -18,10 +18,19 @@ namespace FractionTests
         }
 
         [Fact]
+        public void GCDIsCommutative()
+        {
+            (int NumberOne, int NumnerTwo, int ExpectedGCD) anyPairWithCommonFactors = (NumberOne: 12, NumnerTwo: 42, ExpectedGCD: 6);
+
+            NumberTheory.Gcd(anyPairWithCommonFactors.NumberOne, anyPairWithCommonFactors.NumnerTwo).Should().Be(anyPairWithCommonFactors.ExpectedGCD);
+            NumberTheory.Gcd(anyPairWithCommonFactors.NumnerTwo, anyPairWithCommonFactors.NumberOne).Should().Be(anyPairWithCommonFactors.ExpectedGCD);
+        }
+
+        [Fact]
         public void GCDOfTwoUnEqualPrimeNumbersIsTheSmallerNumber()
         {
-            NumberTheory.Gcd(7, 19).Should().Be(7);
-            NumberTheory.Gcd(3, 5).Should().Be(3);
+            NumberTheory.Gcd(7, 19).Should().Be(1);
+            NumberTheory.Gcd(3, 5).Should().Be(1);
         }
 
         [Fact]
@@ -29,6 +38,13 @@ namespace FractionTests
         {
             int anyNonZeroNumber = 4;
             NumberTheory.Gcd(anyNonZeroNumber, anyNonZeroNumber).Should().Be(anyNonZeroNumber);
+        }
+
+        [Fact]
+        public void GCDOfTwoNonZeroNumbersWithCommonFactors()
+        {
+            (int NumberOne, int NumnerTwo, int ExpectedGCD) anyPairWithCommonFactors = (NumberOne: 6, NumnerTwo: 15, ExpectedGCD: 3);
+            NumberTheory.Gcd(anyPairWithCommonFactors.NumberOne, anyPairWithCommonFactors.NumnerTwo).Should().Be(anyPairWithCommonFactors.ExpectedGCD);
         }
     }
 }
