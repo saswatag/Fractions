@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
+using FractionOperation;
+using FractionOperation.Utilities;
 
 namespace FractionTests
 {

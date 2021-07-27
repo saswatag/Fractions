@@ -1,10 +1,10 @@
 ﻿using System.Configuration;
 
-namespace FractionTests
+namespace FractionOperation.Utilities
 {
-    internal sealed class NumberTheory
+    public sealed class NumberTheory
     {
-        internal static int Gcd(int firstNumber, int secondNumber)
+        public static int Gcd(int firstNumber, int secondNumber)
         {
             if (secondNumber == 0)
                 return firstNumber;

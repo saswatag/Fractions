@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xunit;
 using FluentAssertions;
 using FluentAssertions.Common;
+using FractionOperation;
 
 namespace FractionTests
 {

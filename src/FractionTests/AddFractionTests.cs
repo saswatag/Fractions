@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Xunit;
+using FractionOperation;
 
 namespace FractionTests
 {
