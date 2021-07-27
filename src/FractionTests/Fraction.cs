@@ -24,14 +24,6 @@ namespace FractionTests
 
         public Fraction Add(Fraction fraction)
         {
-            if (fraction.Denominator == this.Denominator)
-                return new Fraction((this.Numerator * fraction.Denominator) + (this.Denominator * fraction.Numerator), this.Denominator * fraction.Denominator);
-            else if(this.Numerator == 0)
-                return new Fraction((this.Numerator * fraction.Denominator) + (this.Denominator * fraction.Numerator), this.Denominator * fraction.Denominator);
-            else if (fraction.Numerator == 0)
-                //return new Fraction(this.Numerator, this.Denominator);
-                return new Fraction((this.Numerator * fraction.Denominator) + (this.Denominator * fraction.Numerator), this.Denominator * fraction.Denominator);
-
             return new Fraction((this.Numerator * fraction.Denominator) + (this.Denominator * fraction.Numerator), this.Denominator * fraction.Denominator);
         }
 
