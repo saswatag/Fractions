@@ -6,8 +6,8 @@ namespace FractionOperation
 {
     public class Fraction
     {
-        public int Numerator { get; private set; }
-        public int Denominator { get; private set; }
+        public int Numerator { get; }
+        public int Denominator { get; }
 
         public Fraction(int numerator) : this(numerator, 1)
         {
