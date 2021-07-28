@@ -5,18 +5,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xunit;
 using FractionOperation;
+using System.Linq;
 
 namespace FractionTests
 {
     public class AddFractionTests
     {
         [Theory]
-        [MemberData(nameof(FractionsWithDenominator_1))]
-        [MemberData(nameof(FractionsInLowestTermsWithSameDenominator))]
-        [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors))]
-        [MemberData(nameof(FractionsInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors))]
-        [MemberData(nameof(FractionsNotInLowestTermsWithSameDenominator))]
-        [MemberData(nameof(FractionsNotInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors))]        
+        [MemberData(nameof(FractionsTestData))]
         public void Fractions_Are_Summed_Correctly(int numerator1, int denominator1, int numerator2, int denominator2, int expectedNumerator, 
             int expectedDenominator)
         {
@@ -74,6 +70,19 @@ namespace FractionTests
         }
 
         #region Heplers
+
+        public static IEnumerable<object[]> FractionsTestData()
+        {
+            var result = new List<object[]>();
+            result.AddRange(FractionsWithDenominator_1());
+            result.AddRange(FractionsInLowestTermsWithSameDenominator());
+            result.AddRange(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors());
+            result.AddRange(FractionsInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors());
+            result.AddRange(FractionsNotInLowestTermsWithSameDenominator());
+            result.AddRange(FractionsNotInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors());
+
+            return result.ToArray();
+        }
 
         public static IEnumerable<object[]> FractionsWithDenominator_1()
         {
