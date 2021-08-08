@@ -25,8 +25,8 @@ namespace FractionTests
         [Theory]
         [MemberData(nameof(FractionsWithSameNumeratorsAndDenominators))]
         public void Fractions_With_Same_Numerators_And_Denominators_Are_Equal(Fraction[] fractions)
-        {
-            Assert.Equal(fractions[0], fractions[1]);
+        {   
+            fractions.Distinct().Count().Should().Be(1);
         }
 
         [Fact]
