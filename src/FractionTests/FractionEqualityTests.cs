@@ -24,12 +24,9 @@ namespace FractionTests
 
         [Theory]
         [MemberData(nameof(FractionsWithSameNumeratorsAndDenominators))]
-        public void Fractions_With_Same_Numerators_And_Denominators_Are_Equal(int numerator1, int denominator1, int numerator2, int denominator2)
+        public void Fractions_With_Same_Numerators_And_Denominators_Are_Equal(Fraction[] fractions)
         {
-            var fraction1 = new Fraction(numerator1, denominator1);
-            var fraction2 = new Fraction(numerator2, denominator2);
-
-            Assert.Equal(fraction1, fraction2);
+            Assert.Equal(fractions[0], fractions[1]);
         }
 
         [Fact]
@@ -57,10 +54,10 @@ namespace FractionTests
             return new List<object[]>
             {
                 // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
-                new object[] { 0, 1, 0, 1 },
-                new object[] { 1, 1, 1, 1 },
-                new object[] { 1, 2, 1, 2 },
-                new object[] { 2, 3, 2, 3 }
+                new object[] { new Fraction[] { new Fraction(0, 1), new Fraction(0, 1) }},
+                new object[] { new Fraction[] { new Fraction(1, 1), new Fraction(1, 1) }},
+                new object[] { new Fraction[] { new Fraction(1, 2), new Fraction(1, 2) }},
+                new object[] { new Fraction[] { new Fraction(2, 3), new Fraction(2, 3) }}
             };
         }
 
