@@ -12,7 +12,7 @@ namespace FractionTests
     public class AddFractionTests
     {
         [Theory]
-        [MemberData(nameof(FractionsTestData))]
+        [MemberData(nameof(AddFractionsTestData))]
         public void Fractions_Are_Summed_Correctly(Fraction[] fractionsToBeSummed, Fraction expectedFraction)
         {
             fractionsToBeSummed[0].Add(fractionsToBeSummed[1]).Should().Be(expectedFraction);
@@ -30,7 +30,7 @@ namespace FractionTests
         }
 
         [Theory]
-        [MemberData(nameof(FractionsInLowestTermsWithSameNumeratorsAndDenominators))]
+        [MemberData(nameof(FractionsWithSameNumeratorsAndDenominators))]
         public void Fractions_With_Same_Numerators_And_Denominators_Are_Equal(int numerator1, int denominator1, int numerator2, int denominator2)
         {
             var fraction1 = new Fraction(numerator1, denominator1);
@@ -65,15 +65,15 @@ namespace FractionTests
 
         #region Heplers
 
-        public static IEnumerable<object[]> FractionsTestData()
+        public static IEnumerable<object[]> AddFractionsTestData()
         {
             var result = new List<object[]>();
             result.AddRange(FractionsWithDenominator_1());
-            //result.AddRange(FractionsInLowestTermsWithSameDenominator());
-            //result.AddRange(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors());
-            //result.AddRange(FractionsInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors());
-            //result.AddRange(FractionsNotInLowestTermsWithSameDenominator());
-            //result.AddRange(FractionsNotInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors());
+            result.AddRange(FractionsInLowestTermsWithSameDenominator());
+            result.AddRange(FractionsInLowestTermsWithDifferentDenominatorsThatDoNotHaveAnyCommonFactors());
+            result.AddRange(FractionsInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors());
+            result.AddRange(FractionsNotInLowestTermsWithSameDenominator());
+            result.AddRange(FractionsNotInLowestTermsWithDifferentDenominatorsThatHaveCommonFactors());
 
             return result.ToArray();
         }
@@ -93,13 +93,13 @@ namespace FractionTests
         public static IEnumerable<object[]> FractionsInLowestTermsWithSameDenominator()
         {
             return new List<object[]>
-            {
-                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
-                new object[] { 1, 1, 1, 1, 2, 1 },
-                new object[] { 1, 2, 3, 2, 4, 2 },
-                new object[] { 0, 1, 1, 1, 1, 1 },
-                new object[] { 5, 1, 5, 1, 10, 1 },
-                new object[] { 2, 3, 1, 3, 3, 3 }
+            {   
+                // list of fraction operands, expected fraction
+                new object[] { new Fraction[] { new Fraction(1, 1), new Fraction(1, 1) }, new Fraction(2, 1) },
+                new object[] { new Fraction[] { new Fraction(1, 2), new Fraction(3, 2) }, new Fraction(4, 2) },
+                new object[] { new Fraction[] { new Fraction(0, 1), new Fraction(1, 1) }, new Fraction(1, 1) },
+                new object[] { new Fraction[] { new Fraction(5, 1), new Fraction(5, 1) }, new Fraction(10, 1) },
+                new object[] { new Fraction[] { new Fraction(2, 3), new Fraction(1, 3) }, new Fraction(3, 3) }
             };
         }
 
@@ -107,18 +107,18 @@ namespace FractionTests
         {
             return new List<object[]>
             {
-                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
-                new object[] { 0, 2, 2, 3, 2, 3 },
-                new object[] { 1, 2, 2, 3, 7, 6 },
-                new object[] { 3, 4, 2, 9, 35, 36 }
+                // list of fraction operands, expected fraction
+                new object[] { new Fraction[] { new Fraction(0, 2), new Fraction(2, 3) }, new Fraction(2, 3) },
+                new object[] { new Fraction[] { new Fraction(1, 2), new Fraction(2, 3) }, new Fraction(7, 6) },
+                new object[] { new Fraction[] { new Fraction(3, 4), new Fraction(2, 9) }, new Fraction(35, 36) }
             };
         }
 
-        public static IEnumerable<object[]> FractionsInLowestTermsWithSameNumeratorsAndDenominators()
+        public static IEnumerable<object[]> FractionsWithSameNumeratorsAndDenominators()
         {
             return new List<object[]>
             {
-                // numerator1, denominator1, numerator2, denominator2
+                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
                 new object[] { 0, 1, 0, 1 },
                 new object[] { 1, 1, 1, 1 },
                 new object[] { 1, 2, 1, 2 },
@@ -130,10 +130,10 @@ namespace FractionTests
         {
             return new List<object[]>
             {
-                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
-                new object[] { 3, 14, 8, 21, 175, 294 },
-                new object[] { 4, 9, 2, 63, 270, 567 },
-                new object[] { 15, 22, 7, 36, 694, 792 }
+                // list of fraction operands, expected fraction
+                new object[] { new Fraction[] { new Fraction(3, 14), new Fraction(8, 21) }, new Fraction(175, 294) },
+                new object[] { new Fraction[] { new Fraction(4, 9), new Fraction(2, 63) }, new Fraction(270, 567) },
+                new object[] { new Fraction[] { new Fraction(15, 22), new Fraction(7, 36) }, new Fraction(694, 792) }
             };
         }
 
@@ -141,12 +141,12 @@ namespace FractionTests
         {
             return new List<object[]>
             {
-                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
-                new object[] { 2, 4, 4, 4, 6, 4 },
-                new object[] { 2, 6, 3, 6, 5, 6 },
-                new object[] { 4, 8, 4, 8, 8, 8 },
-                new object[] { 5, 9, 1, 9, 6, 9 },
-                new object[] { 12, 16, 12, 16, 24, 16 }
+                // list of fraction operands, expected fraction
+                new object[] { new Fraction[] { new Fraction(2, 4), new Fraction(4, 4) }, new Fraction(6, 4) },
+                new object[] { new Fraction[] { new Fraction(2, 6), new Fraction(3, 6) }, new Fraction(5, 6) },
+                new object[] { new Fraction[] { new Fraction(4, 8), new Fraction(4, 8) }, new Fraction(8, 8) },
+                new object[] { new Fraction[] { new Fraction(5, 9), new Fraction(1, 9) }, new Fraction(6, 9) },
+                new object[] { new Fraction[] { new Fraction(12, 16), new Fraction(12, 16) }, new Fraction(24, 16) }
             };
         }
 
@@ -154,13 +154,13 @@ namespace FractionTests
         {
             return new List<object[]>
             {
-                // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
-                new object[] { 2, 4, 3, 6, 24, 24 },
-                new object[] { 2, 8, 3, 6, 36, 48 },
-                new object[] { 3, 9, 2, 6, 36, 54 },
-                new object[] { 10, 10, 5, 25, 300, 250 },
-                new object[] { 12, 16, 22, 18, 568, 288 },
-                new object[] { 10, 110, 100, 10005, 111050, 1100550 }
+                // list of fraction operands, expected fraction
+                new object[] { new Fraction[] { new Fraction(2, 4), new Fraction(3, 6) }, new Fraction(24, 24) },
+                new object[] { new Fraction[] { new Fraction(2, 8), new Fraction(3, 6) }, new Fraction(36, 48) },
+                new object[] { new Fraction[] { new Fraction(3, 9), new Fraction(2, 6) }, new Fraction(36, 54) },
+                new object[] { new Fraction[] { new Fraction(10, 10), new Fraction(5, 25) }, new Fraction(300, 250) },
+                new object[] { new Fraction[] { new Fraction(12, 16), new Fraction(22, 18) }, new Fraction(568, 288) },
+                new object[] { new Fraction[] { new Fraction(10, 110), new Fraction(100, 10005) }, new Fraction(111050, 1100550) }
             };
         }
 
