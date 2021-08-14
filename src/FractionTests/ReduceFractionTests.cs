@@ -13,10 +13,10 @@ namespace FractionTests
     public class ReduceFractionTests
     {
         [Fact]
-        public void FractionsWithDenominatorOneAreInitializedOnlyWithNumerator()
+        public void ReduceFractionNotInLowestTerms()
         {
-            var fraction = new Fraction(4, 8);
-            fraction.Should().Be(new Fraction(1, 2));
+            Fraction reducedFraction = new GCDFractionReducer().Reduce(new Fraction(4, 8));
+            reducedFraction.Should().Be(new Fraction(1, 2));
         }
     }
 }
