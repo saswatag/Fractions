@@ -18,5 +18,19 @@ namespace FractionTests
             Fraction reducedFraction = new GCDFractionReducer().Reduce(new Fraction(4, 8));
             reducedFraction.Should().Be(new Fraction(1, 2));
         }
+
+        [Fact]
+        public void ReduceFractionAreadyInLowestTerms()
+        {
+            Fraction reducedFraction = new GCDFractionReducer().Reduce(new Fraction(1, 2));
+            reducedFraction.Should().Be(new Fraction(1, 2));
+        }
+
+        [Fact]
+        public void ReduceFractionThatIsZero()
+        {
+            Fraction reducedFraction = new GCDFractionReducer().Reduce(new Fraction(0, 6));
+            reducedFraction.Should().Be(new Fraction(0, 6));
+        }
     }
 }
