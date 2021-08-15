@@ -9,7 +9,7 @@ namespace FractionOperation
         public int Numerator { get; }
         public int Denominator { get; }
 
-        private readonly GCDFractionReducer FractionReducer = new GCDFractionReducer();
+        private readonly IFractionReducer FractionReducer = new GCDFractionReducer();
 
         public Fraction(int numerator) : this(numerator, 1)
         {
