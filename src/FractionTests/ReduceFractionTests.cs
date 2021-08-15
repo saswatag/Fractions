@@ -17,8 +17,9 @@ namespace FractionTests
         public void ReduceFractionNotInLowestTerms()
         {
             Fraction unreducedFraction = AnyUnReducedFractionAndTheCorrespondingReducedForm().UnReducedFraction;
+            IFractionReducer fractionReducer = ProvideFractionReducer();
 
-            (int ReducedNumerator, int ReducedDenominator) reduced = new GCDFractionReducer().Reduce(unreducedFraction.Numerator, unreducedFraction.Denominator);
+            (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(unreducedFraction.Numerator, unreducedFraction.Denominator);
 
             new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(AnyUnReducedFractionAndTheCorrespondingReducedForm().ExpectedReducedFraction);
         }
@@ -27,8 +28,9 @@ namespace FractionTests
         public void ReduceFractionAreadyInLowestTerms()
         {
             Fraction fractioInLowestTerms = AnyFractionInLowestTerms();
+            IFractionReducer fractionReducer = ProvideFractionReducer();
 
-            (int ReducedNumerator, int ReducedDenominator) reduced = new GCDFractionReducer().Reduce(fractioInLowestTerms.Numerator, fractioInLowestTerms.Denominator);
+            (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(fractioInLowestTerms.Numerator, fractioInLowestTerms.Denominator);
 
             new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(fractioInLowestTerms);
         }
@@ -37,8 +39,9 @@ namespace FractionTests
         public void ReduceFractionThatIsZero()
         {
             Fraction zeroFraction = AnyFractionThatIsZero();
+            IFractionReducer fractionReducer = ProvideFractionReducer();
 
-            (int ReducedNumerator, int ReducedDenominator) reduced = new GCDFractionReducer().Reduce(zeroFraction.Numerator, zeroFraction.Denominator);
+            (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(zeroFraction.Numerator, zeroFraction.Denominator);
 
             new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(new Fraction(zeroFraction.Numerator, zeroFraction.Denominator));
         }
@@ -51,6 +54,8 @@ namespace FractionTests
         private Fraction AnyFractionInLowestTerms() => new Fraction(3, 5);
 
         private Fraction AnyFractionThatIsZero() => new Fraction(0, 6);
+
+        private IFractionReducer ProvideFractionReducer() => new GCDFractionReducer();
 
         #endregion
     }

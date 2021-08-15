@@ -2,7 +2,7 @@
 
 namespace FractionOperation
 {
-    public class GCDFractionReducer
+    public class GCDFractionReducer : IFractionReducer
     {
         public (int ReducedNumerator, int ReducedDenominator) Reduce(int numerator, int denominator)
         {
