@@ -11,8 +11,10 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace FractionTests
 {
-    public class ReduceFractionTests
+    public abstract class ReduceFractionContractTests
     {
+        protected abstract IFractionReducer ProvideFractionReducer();
+
         [Fact]
         public void ReduceFractionNotInLowestTerms()
         {
@@ -54,8 +56,6 @@ namespace FractionTests
         private Fraction AnyFractionInLowestTerms() => new Fraction(3, 5);
 
         private Fraction AnyFractionThatIsZero() => new Fraction(0, 6);
-
-        private IFractionReducer ProvideFractionReducer() => new GCDFractionReducer();
 
         #endregion
     }
