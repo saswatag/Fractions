@@ -4,10 +4,10 @@ namespace FractionOperation
 {
     public class GCDFractionReducer
     {
-        public Fraction Reduce(Fraction fractionOperand)
+        public (int ReducedNumerator, int ReducedDenominator) Reduce(int numerator, int denominator)
         {
-            int gcdOfNumeratorDenominator = NumberTheory.Gcd(fractionOperand.Numerator, fractionOperand.Denominator);
-            return new Fraction(fractionOperand.Numerator/gcdOfNumeratorDenominator, fractionOperand.Denominator/gcdOfNumeratorDenominator);
+            int gcdOfNumeratorDenominator = NumberTheory.Gcd(numerator, denominator);
+            return (ReducedNumerator: numerator / gcdOfNumeratorDenominator, ReducedDenominator: denominator / gcdOfNumeratorDenominator);
         }
     }
 }

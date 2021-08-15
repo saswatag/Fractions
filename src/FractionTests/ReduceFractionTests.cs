@@ -16,8 +16,11 @@ namespace FractionTests
         [Fact]
         public void ReduceFractionNotInLowestTerms()
         {
-            Fraction reducedFraction = new GCDFractionReducer().Reduce(AnyUnReducedFractionAndTheCorrespondingReducedForm().UnReducedFraction);
-            reducedFraction.Should().Be(AnyUnReducedFractionAndTheCorrespondingReducedForm().ExpectedReducedFraction);
+            Fraction unreducedFraction = AnyUnReducedFractionAndTheCorrespondingReducedForm().UnReducedFraction;
+
+            (int ReducedNumerator, int ReducedDenominator) reduced = new GCDFractionReducer().Reduce(unreducedFraction.Numerator, unreducedFraction.Denominator);
+
+            new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(AnyUnReducedFractionAndTheCorrespondingReducedForm().ExpectedReducedFraction);
         }
 
         [Fact]
@@ -25,15 +28,19 @@ namespace FractionTests
         {
             Fraction fractioInLowestTerms = AnyFractionInLowestTerms();
 
-            Fraction reducedFraction = new GCDFractionReducer().Reduce(fractioInLowestTerms);
-            reducedFraction.Should().Be(fractioInLowestTerms);
+            (int ReducedNumerator, int ReducedDenominator) reduced = new GCDFractionReducer().Reduce(fractioInLowestTerms.Numerator, fractioInLowestTerms.Denominator);
+
+            new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(fractioInLowestTerms);
         }
 
         [Fact]
         public void ReduceFractionThatIsZero()
         {
-            Fraction reducedFraction = new GCDFractionReducer().Reduce(new Fraction(0, 6));
-            reducedFraction.Should().Be(new Fraction(0, 6));
+            Fraction zeroFraction = AnyFractionThatIsZero();
+
+            (int ReducedNumerator, int ReducedDenominator) reduced = new GCDFractionReducer().Reduce(zeroFraction.Numerator, zeroFraction.Denominator);
+
+            new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(new Fraction(zeroFraction.Numerator, zeroFraction.Denominator));
         }
 
         #region Helpers
@@ -42,6 +49,8 @@ namespace FractionTests
             (UnReducedFraction: new Fraction(4, 8), ExpectedReducedFraction: new Fraction(1, 2));
 
         private Fraction AnyFractionInLowestTerms() => new Fraction(3, 5);
+
+        private Fraction AnyFractionThatIsZero() => new Fraction(0, 6);
 
         #endregion
     }
