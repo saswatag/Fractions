@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FractionOperation.Utilities;
+using FractionOperations.Collaborators;
 
 namespace FractionOperation
 {

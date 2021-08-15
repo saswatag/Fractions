@@ -1,4 +1,4 @@
-﻿namespace FractionOperation
+﻿namespace FractionOperations.Collaborators
 {
     public interface IFractionReducer
     {

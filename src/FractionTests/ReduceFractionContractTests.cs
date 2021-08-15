@@ -7,7 +7,7 @@ using Xunit;
 using FluentAssertions;
 using FluentAssertions.Common;
 using FractionOperation;
-using System.Reflection.Metadata.Ecma335;
+using FractionOperations.Collaborators;
 
 namespace FractionTests
 {
