@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FractionOperation.Utilities;
+using FractionOperations.Collaborators;
 
 namespace FractionOperation
 {
@@ -8,6 +9,8 @@ namespace FractionOperation
     {
         public int Numerator { get; }
         public int Denominator { get; }
+
+        private readonly IFractionReducer FractionReducer = new GCDFractionReducer();
 
         public Fraction(int numerator) : this(numerator, 1)
         {
@@ -18,9 +21,9 @@ namespace FractionOperation
             if (denominator.Equals(0))
                 throw new ArgumentException("Fraction with denominator zero is invalid.");
 
-            int gcdOfNumeratorDenominator = NumberTheory.Gcd(numerator, denominator);
-            Numerator = numerator / gcdOfNumeratorDenominator;
-            Denominator = denominator / gcdOfNumeratorDenominator;
+            (int ReducedNumerator, int ReducedDenominator) reduced = FractionReducer.Reduce(numerator, denominator);
+            Numerator = reduced.ReducedNumerator;
+            Denominator = reduced.ReducedDenominator;
         }
 
         public Fraction Add(Fraction fraction)
