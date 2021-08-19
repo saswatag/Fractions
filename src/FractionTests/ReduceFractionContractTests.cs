@@ -23,7 +23,7 @@ namespace FractionTests
 
             (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(unreducedFraction.Numerator, unreducedFraction.Denominator);
 
-            new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(AnyUnReducedFractionAndTheCorrespondingReducedForm().ExpectedReducedFraction);
+            FractionFactory.CreateFraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(AnyUnReducedFractionAndTheCorrespondingReducedForm().ExpectedReducedFraction);
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace FractionTests
 
             (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(fractioInLowestTerms.Numerator, fractioInLowestTerms.Denominator);
 
-            new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(fractioInLowestTerms);
+            FractionFactory.CreateFraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(fractioInLowestTerms);
         }
 
         [Fact]
@@ -45,17 +45,17 @@ namespace FractionTests
 
             (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(zeroFraction.Numerator, zeroFraction.Denominator);
 
-            new Fraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(new Fraction(zeroFraction.Numerator, zeroFraction.Denominator));
+            FractionFactory.CreateFraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(FractionFactory.CreateFraction(zeroFraction.Numerator, zeroFraction.Denominator));
         }
 
         #region Helpers
 
         private (Fraction UnReducedFraction, Fraction ExpectedReducedFraction) AnyUnReducedFractionAndTheCorrespondingReducedForm() => 
-            (UnReducedFraction: new Fraction(4, 8), ExpectedReducedFraction: new Fraction(1, 2));
+            (UnReducedFraction: FractionFactory.CreateFraction(4, 8), ExpectedReducedFraction: FractionFactory.CreateFraction(1, 2));
 
-        private Fraction AnyFractionInLowestTerms() => new Fraction(3, 5);
+        private Fraction AnyFractionInLowestTerms() => FractionFactory.CreateFraction(3, 5);
 
-        private Fraction AnyFractionThatIsZero() => new Fraction(0, 6);
+        private Fraction AnyFractionThatIsZero() => FractionFactory.CreateFraction(0, 6);
 
         #endregion
     }
