@@ -1,6 +1,5 @@
-﻿using FluentAssertions;
-using Xunit;
-using FractionOperation;
+﻿using Xunit;
+using FluentAssertions;
 using FractionOperation.Utilities;
 
 namespace FractionTests
