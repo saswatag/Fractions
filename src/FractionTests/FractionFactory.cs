@@ -16,7 +16,7 @@ namespace FractionTests
 
         internal static Fraction CreateFraction(int numerator, int denominator)
         {
-            return new Fraction(numerator, denominator);
+            return new Fraction(numerator, denominator, new GCDFractionReducer());
         }
     }
 }

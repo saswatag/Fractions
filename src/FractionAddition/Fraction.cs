@@ -10,25 +10,27 @@ namespace FractionOperation
         public int Numerator { get; }
         public int Denominator { get; }
 
-        private readonly IFractionReducer FractionReducer = new GCDFractionReducer();
+        private readonly IFractionReducer _fractionReducer;
 
-        public Fraction(int numerator) : this(numerator, 1)
-        {
+        public Fraction(int numerator, IFractionReducer fractionReducer) : this(numerator, 1, fractionReducer)
+        {            
         }
 
-        public Fraction(int numerator, int denominator)
+        public Fraction(int numerator, int denominator, IFractionReducer fractionReducer)
         {
             if (denominator.Equals(0))
                 throw new ArgumentException("Fraction with denominator zero is invalid.");
 
-            (int ReducedNumerator, int ReducedDenominator) reduced = FractionReducer.Reduce(numerator, denominator);
+            _fractionReducer = fractionReducer;
+
+            (int ReducedNumerator, int ReducedDenominator) reduced = _fractionReducer.Reduce(numerator, denominator);
             Numerator = reduced.ReducedNumerator;
             Denominator = reduced.ReducedDenominator;
         }
 
         public Fraction Add(Fraction fraction)
         {
-            return new Fraction((this.Numerator * fraction.Denominator) + (this.Denominator * fraction.Numerator), this.Denominator * fraction.Denominator);
+            return new Fraction((this.Numerator * fraction.Denominator) + (this.Denominator * fraction.Numerator), this.Denominator * fraction.Denominator, _fractionReducer);
         }
 
         public override bool Equals(object obj)
