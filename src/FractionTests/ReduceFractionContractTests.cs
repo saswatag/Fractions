@@ -18,44 +18,48 @@ namespace FractionTests
         [Fact]
         public void ReduceFractionNotInLowestTerms()
         {
-            Fraction unreducedFraction = AnyUnReducedFractionAndTheCorrespondingReducedForm().UnReducedFraction;
+            (int UnReducedNumerator, int UnReducedDenominator, int ReducedNumerator, int ReducedDenominator) testData
+                = AnyUnReducedNumeratorDenominatorAndTheCorrespondingReducedForm();
             IFractionReducer fractionReducer = ProvideFractionReducer();
 
-            (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(unreducedFraction.Numerator, unreducedFraction.Denominator);
+            (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(testData.UnReducedNumerator, testData.UnReducedDenominator);
 
-            FractionFactory.CreateFraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(AnyUnReducedFractionAndTheCorrespondingReducedForm().ExpectedReducedFraction);
+            reduced.ReducedNumerator.Should().Be(testData.ReducedNumerator);
+            reduced.ReducedDenominator.Should().Be(testData.ReducedDenominator);
         }
 
         [Fact]
         public void ReduceFractionAreadyInLowestTerms()
         {
-            Fraction fractioInLowestTerms = AnyFractionInLowestTerms();
+            (int ReducedNumerator, int ReducedDenominator) testData = AnyNumeratorDenominatorPairInLowestTerms();
             IFractionReducer fractionReducer = ProvideFractionReducer();
 
-            (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(fractioInLowestTerms.Numerator, fractioInLowestTerms.Denominator);
+            (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(testData.ReducedNumerator, testData.ReducedDenominator);
 
-            FractionFactory.CreateFraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(fractioInLowestTerms);
+            reduced.ReducedNumerator.Should().Be(testData.ReducedNumerator);
+            reduced.ReducedDenominator.Should().Be(testData.ReducedDenominator);
         }
 
         [Fact]
         public void ReduceFractionThatIsZero()
         {
-            Fraction zeroFraction = AnyFractionThatIsZero();
+            (int Numerator, int Denominator) zeroFraction = AnyFractionThatIsZero();
             IFractionReducer fractionReducer = ProvideFractionReducer();
 
             (int ReducedNumerator, int ReducedDenominator) reduced = fractionReducer.Reduce(zeroFraction.Numerator, zeroFraction.Denominator);
-
-            FractionFactory.CreateFraction(reduced.ReducedNumerator, reduced.ReducedDenominator).Should().Be(FractionFactory.CreateFraction(zeroFraction.Numerator, zeroFraction.Denominator));
+            
+            reduced.ReducedNumerator.Should().Be(zeroFraction.Numerator);
+            reduced.ReducedDenominator.Should().Be(zeroFraction.Denominator);
         }
 
         #region Helpers
 
-        private (Fraction UnReducedFraction, Fraction ExpectedReducedFraction) AnyUnReducedFractionAndTheCorrespondingReducedForm() => 
-            (UnReducedFraction: FractionFactory.CreateFraction(4, 8), ExpectedReducedFraction: FractionFactory.CreateFraction(1, 2));
+        private (int UnReducedNumerator, int UnReducedDenominator, int ReducedNumerator, int ReducedDenominator) AnyUnReducedNumeratorDenominatorAndTheCorrespondingReducedForm() =>
+            (UnReducedNumerator: 4, UnReducedDenominator: 8, ReducedNumerator: 1, ReducedDenominator: 2);
 
-        private Fraction AnyFractionInLowestTerms() => FractionFactory.CreateFraction(3, 5);
-
-        private Fraction AnyFractionThatIsZero() => FractionFactory.CreateFraction(0, 6);
+        private (int Numerator, int Denominator) AnyNumeratorDenominatorPairInLowestTerms() => (Numerator: 3, Denominator: 5);
+        
+        private (int Numerator, int Denominator) AnyFractionThatIsZero() => (Numerator: 0, Denominator: 6);
 
         #endregion
     }
