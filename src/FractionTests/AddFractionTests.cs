@@ -21,7 +21,7 @@ namespace FractionTests
         [Fact]
         public void SumFractionsInitializedOnlyWithNumerator()
         {
-            FractionFactory.CreateFraction(3).Add(FractionFactory.CreateFraction(4)).Should().Be(FractionFactory.CreateFraction(7));
+            ReducingFractionFactory.CreateFraction(3).Add(ReducingFractionFactory.CreateFraction(4)).Should().Be(ReducingFractionFactory.CreateFraction(7));
         }
 
         #region Heplers
@@ -44,10 +44,10 @@ namespace FractionTests
             return new List<object[]>
             {
                 // list of fraction operands, expected fraction
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(2, 1), FractionFactory.CreateFraction(3, 1) }, FractionFactory.CreateFraction(5, 1) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(1, 1), FractionFactory.CreateFraction(2, 1) }, FractionFactory.CreateFraction(3, 1) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(0, 1), FractionFactory.CreateFraction(1, 1) }, FractionFactory.CreateFraction(1, 1) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(10000, 1), FractionFactory.CreateFraction(1, 1) }, FractionFactory.CreateFraction(10001, 1) }
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(2, 1), ReducingFractionFactory.CreateFraction(3, 1) }, ReducingFractionFactory.CreateFraction(5, 1) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(1, 1), ReducingFractionFactory.CreateFraction(2, 1) }, ReducingFractionFactory.CreateFraction(3, 1) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(0, 1), ReducingFractionFactory.CreateFraction(1, 1) }, ReducingFractionFactory.CreateFraction(1, 1) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(10000, 1), ReducingFractionFactory.CreateFraction(1, 1) }, ReducingFractionFactory.CreateFraction(10001, 1) }
             };
         }
 
@@ -56,11 +56,11 @@ namespace FractionTests
             return new List<object[]>
             {   
                 // list of fraction operands, expected fraction
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(1, 1), FractionFactory.CreateFraction(1, 1) }, FractionFactory.CreateFraction(2, 1) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(1, 2), FractionFactory.CreateFraction(3, 2) }, FractionFactory.CreateFraction(4, 2) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(0, 1), FractionFactory.CreateFraction(1, 1) }, FractionFactory.CreateFraction(1, 1) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(5, 1), FractionFactory.CreateFraction(5, 1) }, FractionFactory.CreateFraction(10, 1) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(2, 3), FractionFactory.CreateFraction(1, 3) }, FractionFactory.CreateFraction(3, 3) }
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(1, 1), ReducingFractionFactory.CreateFraction(1, 1) }, ReducingFractionFactory.CreateFraction(2, 1) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(1, 2), ReducingFractionFactory.CreateFraction(3, 2) }, ReducingFractionFactory.CreateFraction(4, 2) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(0, 1), ReducingFractionFactory.CreateFraction(1, 1) }, ReducingFractionFactory.CreateFraction(1, 1) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(5, 1), ReducingFractionFactory.CreateFraction(5, 1) }, ReducingFractionFactory.CreateFraction(10, 1) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(2, 3), ReducingFractionFactory.CreateFraction(1, 3) }, ReducingFractionFactory.CreateFraction(3, 3) }
             };
         }
 
@@ -69,9 +69,9 @@ namespace FractionTests
             return new List<object[]>
             {
                 // list of fraction operands, expected fraction
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(0, 2), FractionFactory.CreateFraction(2, 3) }, FractionFactory.CreateFraction(2, 3) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(1, 2), FractionFactory.CreateFraction(2, 3) }, FractionFactory.CreateFraction(7, 6) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(3, 4), FractionFactory.CreateFraction(2, 9) }, FractionFactory.CreateFraction(35, 36) }
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(0, 2), ReducingFractionFactory.CreateFraction(2, 3) }, ReducingFractionFactory.CreateFraction(2, 3) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(1, 2), ReducingFractionFactory.CreateFraction(2, 3) }, ReducingFractionFactory.CreateFraction(7, 6) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(3, 4), ReducingFractionFactory.CreateFraction(2, 9) }, ReducingFractionFactory.CreateFraction(35, 36) }
             };
         }
 
@@ -80,9 +80,9 @@ namespace FractionTests
             return new List<object[]>
             {
                 // list of fraction operands, expected fraction
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(3, 14), FractionFactory.CreateFraction(8, 21) }, FractionFactory.CreateFraction(175, 294) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(4, 9), FractionFactory.CreateFraction(2, 63) }, FractionFactory.CreateFraction(270, 567) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(15, 22), FractionFactory.CreateFraction(7, 36) }, FractionFactory.CreateFraction(694, 792) }
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(3, 14), ReducingFractionFactory.CreateFraction(8, 21) }, ReducingFractionFactory.CreateFraction(175, 294) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(4, 9), ReducingFractionFactory.CreateFraction(2, 63) }, ReducingFractionFactory.CreateFraction(270, 567) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(15, 22), ReducingFractionFactory.CreateFraction(7, 36) }, ReducingFractionFactory.CreateFraction(694, 792) }
             };
         }
 
@@ -91,11 +91,11 @@ namespace FractionTests
             return new List<object[]>
             {
                 // list of fraction operands, expected fraction
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(2, 4), FractionFactory.CreateFraction(4, 4) }, FractionFactory.CreateFraction(6, 4) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(2, 6), FractionFactory.CreateFraction(3, 6) }, FractionFactory.CreateFraction(5, 6) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(4, 8), FractionFactory.CreateFraction(4, 8) }, FractionFactory.CreateFraction(8, 8) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(5, 9), FractionFactory.CreateFraction(1, 9) }, FractionFactory.CreateFraction(6, 9) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(12, 16), FractionFactory.CreateFraction(12, 16) }, FractionFactory.CreateFraction(24, 16) }
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(2, 4), ReducingFractionFactory.CreateFraction(4, 4) }, ReducingFractionFactory.CreateFraction(6, 4) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(2, 6), ReducingFractionFactory.CreateFraction(3, 6) }, ReducingFractionFactory.CreateFraction(5, 6) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(4, 8), ReducingFractionFactory.CreateFraction(4, 8) }, ReducingFractionFactory.CreateFraction(8, 8) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(5, 9), ReducingFractionFactory.CreateFraction(1, 9) }, ReducingFractionFactory.CreateFraction(6, 9) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(12, 16), ReducingFractionFactory.CreateFraction(12, 16) }, ReducingFractionFactory.CreateFraction(24, 16) }
             };
         }
 
@@ -104,12 +104,12 @@ namespace FractionTests
             return new List<object[]>
             {
                 // list of fraction operands, expected fraction
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(2, 4), FractionFactory.CreateFraction(3, 6) }, FractionFactory.CreateFraction(24, 24) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(2, 8), FractionFactory.CreateFraction(3, 6) }, FractionFactory.CreateFraction(36, 48) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(3, 9), FractionFactory.CreateFraction(2, 6) }, FractionFactory.CreateFraction(36, 54) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(10, 10), FractionFactory.CreateFraction(5, 25) }, FractionFactory.CreateFraction(300, 250) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(12, 16), FractionFactory.CreateFraction(22, 18) }, FractionFactory.CreateFraction(568, 288) },
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(10, 110), FractionFactory.CreateFraction(100, 10005) }, FractionFactory.CreateFraction(111050, 1100550) }
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(2, 4), ReducingFractionFactory.CreateFraction(3, 6) }, ReducingFractionFactory.CreateFraction(24, 24) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(2, 8), ReducingFractionFactory.CreateFraction(3, 6) }, ReducingFractionFactory.CreateFraction(36, 48) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(3, 9), ReducingFractionFactory.CreateFraction(2, 6) }, ReducingFractionFactory.CreateFraction(36, 54) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(10, 10), ReducingFractionFactory.CreateFraction(5, 25) }, ReducingFractionFactory.CreateFraction(300, 250) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(12, 16), ReducingFractionFactory.CreateFraction(22, 18) }, ReducingFractionFactory.CreateFraction(568, 288) },
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(10, 110), ReducingFractionFactory.CreateFraction(100, 10005) }, ReducingFractionFactory.CreateFraction(111050, 1100550) }
             };
         }
 

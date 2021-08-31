@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FractionTests
 {
-    internal static class FractionFactory
+    internal static class ReducingFractionFactory
     {
         internal static Fraction CreateFraction(int numerator)
         {

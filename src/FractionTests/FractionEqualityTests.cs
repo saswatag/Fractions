@@ -17,7 +17,7 @@ namespace FractionTests
         [InlineData(-1, 0)]
         public void Fractions_With_Denominator_Zero_Are_Not_Allowed(int numerator, int deominator)
         {
-            Action createFractionAction = () => FractionFactory.CreateFraction(numerator, deominator);
+            Action createFractionAction = () => ReducingFractionFactory.CreateFraction(numerator, deominator);
 
             createFractionAction.Should().Throw<ArgumentException>().WithMessage("Fraction with denominator zero is invalid.");
         }
@@ -35,7 +35,7 @@ namespace FractionTests
             int anyIntegerValueForNumerator = 1;
             int anyNonZeroIntegerValueForDenominator = 2;
 
-            var fraction = FractionFactory.CreateFraction(anyIntegerValueForNumerator, anyNonZeroIntegerValueForDenominator);            
+            var fraction = ReducingFractionFactory.CreateFraction(anyIntegerValueForNumerator, anyNonZeroIntegerValueForDenominator);            
 
             Assert.NotEqual(null, fraction);
         }
@@ -43,7 +43,7 @@ namespace FractionTests
         [Fact]
         public void FractionsWithDenominatorOneAreInitializedOnlyWithNumerator()
         {
-            var fraction = FractionFactory.CreateFraction(3);
+            var fraction = ReducingFractionFactory.CreateFraction(3);
             fraction.Denominator.Should().Be(1);
         }
 
@@ -54,10 +54,10 @@ namespace FractionTests
             return new List<object[]>
             {
                 // numerator1, denominator1, numerator2, denominator2, expectedNumerator, expectedDenominator
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(0, 1), FractionFactory.CreateFraction(0, 1) }},
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(1, 1), FractionFactory.CreateFraction(1, 1) }},
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(1, 2), FractionFactory.CreateFraction(1, 2) }},
-                new object[] { new Fraction[] { FractionFactory.CreateFraction(2, 3), FractionFactory.CreateFraction(2, 3) }}
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(0, 1), ReducingFractionFactory.CreateFraction(0, 1) }},
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(1, 1), ReducingFractionFactory.CreateFraction(1, 1) }},
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(1, 2), ReducingFractionFactory.CreateFraction(1, 2) }},
+                new object[] { new Fraction[] { ReducingFractionFactory.CreateFraction(2, 3), ReducingFractionFactory.CreateFraction(2, 3) }}
             };
         }
 
